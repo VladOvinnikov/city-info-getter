@@ -23,12 +23,21 @@
             });
 
         $scope.getInfo = function (city) {
-            city = 'Boston';
             $scope.error = null;
             if (city) {
                 CityService.getInfo(city)
                     .then(function (res) {
                         $scope.cityInfo = res;
+
+                        CityService.getWeather($scope.cityInfo[1].address_components[4].long_name)
+                            .then(function (res) {
+                                $scope.weather = res.results.channel.item;
+
+                            }, function (error) {
+                                $scope.error = error;
+                            });
+
+
                     }, function (error) {
                         $scope.error = error;
                     });
