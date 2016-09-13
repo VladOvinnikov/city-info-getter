@@ -11,27 +11,70 @@
     CityService.$inject = ['$q', '$http', '$log'];
 
     function CityService($q, $http, $log) {
+
         $log.info('CityService loaded!');
 
-        var deferred = $q.defer();
-
+        var deferred = $q.defer(),
+            cities = [
+                'New York',
+                'Los Angeles',
+                'Chicago',
+                'Houston',
+                'Philadelphia',
+                'Phoenix',
+                'San Antonio',
+                'San Diego',
+                'Dallas',
+                'San Jose',
+                'Jacksonville',
+                'Indianapolis',
+                'San Francisco',
+                'Austin',
+                'Columbus',
+                'Fort Worth',
+                'Charlotte',
+                'Detroit, Michigan',
+                'Baltimore',
+                'Boston',
+                'Seattle',
+                'Washington',
+                'Denver',
+                'Portland',
+                'Las Vegas',
+                'Albuquerque',
+                'Sacramento',
+                'Kansas City',
+                'Atlanta',
+                'Miami',
+                'Cleveland'
+            ];
+        
         return {
-            getInfo: getInfo
+            getInfo: getInfo,
+            getCities: getCities
         };
 
-        function getInfo(){
+        function getInfo(city) {
             //https://github.com/deremer/Cities/blob/master/countries/unitedstates.js
             //http://maps.googleapis.com/maps/api/geocode/json?address=usa,+chicago&language=us&sensor=false
-            $http.get('//maps.googleapis.com/maps/api/geocode/json', {
-                params: {
-                    address: val,
-                    sensor: false
-                }
-            }).then(function(response){
-                return response.data.results.map(function(item){
-                    return item.formatted_address;
-                });
-            });
+            return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address=usa,+' + city + '&language=us&sensor=false')
+                .then(
+                    function (res) {
+                        return res.data.results;
+                        // return response.data.results.map(function(item){
+                        //     return item.formatted_address;
+                        // });
+                    })
+                .finally(
+                    function () {
+                        $log.info('Request City getList finished at:', new Date());
+                    }
+                );
+        }
+
+        function getCities() {
+            deferred.resolve(cities);
+            return deferred.promise;
         }
 
     }

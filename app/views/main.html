@@ -1,1 +1,45 @@
-<h3>Main page</h3>
+<h3>City information</h3>
+<div class="alert alert-danger" role="alert"
+     ng-if="error">{{error}}
+</div>
+<form class="form-inline"
+      ng-submit="getInfo(selectedCity)">
+    <div class="form-group">
+        <label for="citySelect">City:</label>
+        <select id="citySelect" class="form-control" ng-model="selectedCity">
+            <option value="">- Choose city -</option>
+            <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+        </select>
+    </div>
+    <button class="btn btn-success" type="submit">Get info</button>
+</form>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{cityInfo[0].address_components[0].long_name}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">State:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{cityInfo[0].address_components[2].long_name}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Postal code:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{cityInfo[1].address_components[5].long_name}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Location:</label>
+        <div class="col-sm-5">
+            <p class="form-control-static">{{cityInfo[1].geometry.location.lat}}</p>
+        </div>
+        <div class="col-sm-5">
+            <p class="form-control-static">{{cityInfo[1].geometry.location.lng}}</p>
+        </div>
+    </div>
+</form>
+<pre>{{cityInfo | json}}</pre>
