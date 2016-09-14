@@ -14,6 +14,8 @@
         $log.info('MainCtrl loaded!');
 
         $scope.error = null;
+        $scope.cities = null;
+        $scope.cityInfo = null;
 
         CityService.getCities()
             .then(function (res) {
@@ -31,8 +33,6 @@
 
                         CityService.getWeather($scope.cityInfo[1].address_components[4].long_name)
                             .then(function (res) {
-                                console.log(res);
-
                                 $scope.weather = res.channel.item;
                             }, function (error) {
                                 $scope.error = error;

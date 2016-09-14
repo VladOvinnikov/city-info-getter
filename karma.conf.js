@@ -2,19 +2,21 @@
 module.exports = function (config) {
     config.set({
 
-        basePath: './app',
+        basePath: './',
 
         files: [
-            'bower_components/angular/angular.min.js',
-            'controllers/*.js',
-            'services/*.js',
-            'app.js'
+            'app/bower_components/angular/angular.min.js',
+            'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/controllers/*.js',
+            'app/services/*.js',
+            'app/*.js',
+            'tests/**/*.js'
         ],
 
         reporters: ['progress', 'coverage'],
 
         preprocessors: {
-            '!(bower_components)**/**/*.js': ['coverage']
+            'app/!(bower_components)**/**/*.js': ['coverage']
         },
 
         coverageReporter: {
@@ -29,6 +31,8 @@ module.exports = function (config) {
         browsers: ['Chrome'],
 
         colors: true,
+
+        logLevel: config.LOG_DEBUG,
 
         plugins: [
             'karma-chrome-launcher',
