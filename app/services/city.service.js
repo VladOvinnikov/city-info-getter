@@ -26,7 +26,7 @@
                 'Sacramento',
                 'Miami'
             ];
-        
+
         return {
             getInfo: getInfo,
             getCities: getCities,
@@ -47,7 +47,11 @@
         }
 
         function getWeather(zipCode) {
-            return $http.get('http://localhost:3000/' + zipCode)
+            return $http.get('http://localhost:3000/weather', {
+                    params: {
+                        zip: zipCode
+                    }
+                })
                 .then(
                     function (res) {
                         return res.data;

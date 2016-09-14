@@ -1,33 +1,49 @@
 //jshint strict: false
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+    config.set({
 
-    basePath: './app',
+        basePath: './app',
 
-    files: [
-      'bower_components/angular/angular.js',
-     
-      'controllers/**/*.js',
-      'view*/**/*.js'
-    ],
+        files: [
+            'bower_components/angular/angular.min.js',
+            'controllers/*.js',
+            'services/*.js',
+            'app.js'
+        ],
 
-    autoWatch: true,
+        reporters: ['progress', 'coverage'],
 
-    frameworks: ['jasmine'],
+        preprocessors: {
+            '!(bower_components)**/**/*.js': ['coverage']
+        },
 
-    browsers: ['Chrome'],
+        coverageReporter: {
+            type: 'html',
+            dir: 'tests/reports/coverage/'
+        },
 
-    plugins: [
-      'karma-chrome-launcher',
-      'karma-firefox-launcher',
-      'karma-jasmine',
-      'karma-junit-reporter'
-    ],
+        autoWatch: true,
 
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+        frameworks: ['jasmine'],
 
-  });
+        browsers: ['Chrome'],
+
+        colors: true,
+
+        plugins: [
+            'karma-chrome-launcher',
+            'karma-jasmine',
+            'karma-junit-reporter',
+            'karma-coverage',
+            'sinon'
+        ],
+
+        junitReporter: {
+            outputFile: 'tests/unit.xml',
+            suite: 'unit'
+        },
+
+        singleRun: false
+
+    });
 };

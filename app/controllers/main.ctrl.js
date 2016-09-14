@@ -31,8 +31,9 @@
 
                         CityService.getWeather($scope.cityInfo[1].address_components[4].long_name)
                             .then(function (res) {
-                                $scope.weather = res.results.channel.item;
+                                console.log(res);
 
+                                $scope.weather = res.channel.item;
                             }, function (error) {
                                 $scope.error = error;
                             });
