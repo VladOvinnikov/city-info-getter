@@ -47,7 +47,9 @@
         }
 
         function getWeather(zipCode) {
-            return $http.get('http://localhost:3000/weather', {
+
+            //https://thawing-gorge-74042.herokuapp.com
+            return $http.get('https://weather-web-server.herokuapp.com/weather',{//http://localhost:3000/weather', {
                     params: {
                         zip: zipCode
                     }
