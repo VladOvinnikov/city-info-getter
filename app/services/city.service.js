@@ -34,7 +34,7 @@
         };
 
         function getInfo(city) {
-            return $http.get('http://maps.googleapis.com/maps/api/geocode/json?address=usa,+' + city + '&language=us&sensor=false')
+            return $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=usa,+' + city + '&language=us&sensor=false')
                 .then(
                     function (res) {
                         return res.data.results;
