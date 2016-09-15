@@ -1,18 +1,23 @@
 {
   "name": "city-info-getter",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Get city info",
   "license": "MIT",
+  "engines": {
+    "node": "4.4.7",
+    "npm": "3.10.3"
+  },
   "devDependencies": {
-    "bower": "^1.7.7",
+    "bower": "^1.7.9",
     "http-server": "^0.9.0",
     "jasmine": "^2.5.1",
     "jasmine-core": "^2.4.1",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^0.3.8",
+    "karma-html-reporter": "^0.2.7",
+    "karma-jasmine": "^1.0.2",
     "karma-junit-reporter": "^0.4.1",
     "sinon": "^1.17.5"
   },
