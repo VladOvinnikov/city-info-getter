@@ -1,0 +1,48 @@
+<div class="well">
+    <button class="btn btn-link" type="button"
+            ui-sref="home"><span class="glyphicon glyphicon-chevron-left"></span>Back to city info
+    </button>
+    <h3><strong>Weather for "<span ng-bind="global.cityInfo[1].address_components[0].long_name"></span>":</strong></h3>
+    <div class="form-group">
+        <div class="col-lg-12">
+            <label class="col-sm-6 control-label">Current temperature:</label>
+            <div class="col-sm-6">
+                <p class="form-control-static"><span ng-bind="weather.condition.temp"></span>F</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4"
+             ng-repeat="forecast in weather.forecast">
+            <h4><strong ng-bind="forecast.date">:</strong></h4>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label class="col-sm-6 control-label">Highest temperature:</label>
+                    <div class="col-sm-6">
+                        <p class="form-control-static"><span ng-bind="forecast.high"></span>F</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label class="col-sm-6 control-label">Lowest temperature:</label>
+                    <div class="col-sm-6">
+                        <p class="form-control-static"
+                           ng-bind="forecast.low"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <label class="col-sm-6 control-label">Text:</label>
+                    <div class="col-sm-6">
+                        <p class="form-control-static"
+                           ng-bind="forecast.text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

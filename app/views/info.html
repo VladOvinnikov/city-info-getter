@@ -1,0 +1,25 @@
+<h3>City information</h3>
+<div class="alert alert-danger" role="alert"
+     ng-if="global.error">{{global.error}}
+</div>
+<form class="form-inline"
+      ng-submit="getInfo(selectedCity)">
+    <div class="form-group">
+        <label for="citySelect">City:</label>
+        <select id="citySelect" class="form-control" ng-model="selectedCity">
+            <option value="">- Choose city -</option>
+            <option ng-repeat="city in global.cities" value="{{city}}">{{city}}</option>
+        </select>
+    </div>
+    <button class="btn btn-success" type="submit">Get info</button>
+    <button class="btn btn-link" type="button"
+            ng-if="global.cityInfo"
+            ui-sref="weather({zipCode: global.cityInfo[1].address_components[4].long_name})">Get weather
+    </button>
+</form>
+<form class="form-horizontal"
+      ng-if="global.cityInfo">
+
+    <!-- City information -->
+    <c-city-info city="global.cityInfo[1]"></c-city-info>
+</form>

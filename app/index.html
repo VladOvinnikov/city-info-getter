@@ -12,14 +12,31 @@
 </head>
 <body>
 
-<div ui-view class="container"></div>
+<div ui-view class="container"
+     ng-controller="AppCtrl"></div>
 
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
+<!-- App -->
 <script src="app.js"></script>
-<script type="text/javascript" src="controllers/main.ctrl.js"></script>
+<!-- Configs -->
+<script type="text/javascript" src="config/route.config.js"></script>
+<script type="text/javascript" src="config/constant.config.js"></script>
+<script type="text/javascript" src="config/routeRequest.config.js"></script>
+<!-- Filters -->
+<script type="text/javascript" src="filters/filters.js"></script>
+<script type="text/javascript" src="filters/stringFormat.filter.js"></script>
+<!-- Directives -->
+<script type="text/javascript" src="directives/directives.js"></script>
+<script type="text/javascript" src="directives/cityInfo.directive.js"></script>
+<!-- Controllers -->
+<script type="text/javascript" src="controllers/controllers.js"></script>
+<script type="text/javascript" src="controllers/app.ctrl.js"></script>
+<script type="text/javascript" src="controllers/cityInfo.controller.js"></script>
+<script type="text/javascript" src="controllers/weather.controller.js"></script>
+<!-- Services -->
 <script type="text/javascript" src="services/city.service.js"></script>
 
 </body>

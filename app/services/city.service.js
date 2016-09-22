@@ -3,17 +3,21 @@
  */
 ;
 (function () {
+
     'use strict';
 
     angular.module('cityGetApp.city.service', [])
         .service('CityService', CityService);
 
-    CityService.$inject = ['$q', '$http', '$log'];
+    // inject dependencies to the service
+    CityService.$inject = ['$q', '$http', '$log', 'REST_URL', 'REQUEST_URL', '$filter'];
 
-    function CityService($q, $http, $log) {
+    function CityService($q, $http, $log, REST_URL, REQUEST_URL, $filter) {
 
+        // log service enters
         $log.info('CityService loaded!');
 
+        // Declare all variables
         var deferred = $q.defer(),
             cities = [
                 'Houston',
@@ -33,8 +37,13 @@
             getWeather: getWeather
         };
 
+        /**
+         * Get city info by its name
+         * @param city
+         * @returns {*}
+         */
         function getInfo(city) {
-            return $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=usa,+' + city + '&language=us&sensor=false')
+            return $http.get($filter('cFormat')(REQUEST_URL.GET_CITY_INFO, [city]))
                 .then(
                     function (res) {
                         return res.data.results;
@@ -46,9 +55,13 @@
                 );
         }
 
+        /**
+         * Get weather by city zip code
+         * @param zipCode
+         * @returns {*}
+         */
         function getWeather(zipCode) {
-
-            return $http.get('https://weather-web-server.herokuapp.com/weather',{//http://localhost:3000/weather', {
+            return $http.get(REST_URL + REQUEST_URL.GET_WEATHER, {
                     params: {
                         zip: zipCode
                     }
@@ -64,6 +77,10 @@
                 );
         }
 
+        /**
+         * Get city list
+         * @returns {Function}
+         */
         function getCities() {
             deferred.resolve(cities);
             return deferred.promise;

@@ -8,9 +8,12 @@ module.exports = function (config) {
             'app/bower_components/angular/angular.min.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
             'app/controllers/*.js',
+            'app/directives/*.js',
+            'app/filters/*.js',
             'app/services/*.js',
             'app/*.js',
-            'tests/**/*.js'
+            'tests/**/*.js',
+            'app/partials/*.html'
         ],
 
         reporters: ['progress', 'coverage'],
