@@ -16,6 +16,8 @@
         // log controller enters
         $log.info('WeatherCityCtrl loaded!');
 
+        // Declare variables
+        $scope.weather = null;
         var zipCodeParam = $stateParams.zipCode;
         
         // make request by city's zip
@@ -25,7 +27,7 @@
                 $scope.weather = res.channel.item;
             }, function (error) {
                 // if error pass it to the scope variable
-                $scope.error = error;
+                $scope.global.error = error;
             });
         
     }

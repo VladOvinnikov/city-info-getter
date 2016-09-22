@@ -7,10 +7,12 @@ module.exports = function (config) {
         files: [
             'app/bower_components/angular/angular.min.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
             'app/controllers/*.js',
             'app/directives/*.js',
             'app/filters/*.js',
             'app/services/*.js',
+            'app/config/*.js',
             'app/*.js',
             'tests/**/*.js',
             'app/partials/*.html'
@@ -19,6 +21,7 @@ module.exports = function (config) {
         reporters: ['progress', 'coverage'],
 
         preprocessors: {
+            'app/partials/*.html': ['ng-html2js'],
             'app/!(bower_components)**/**/*.js': ['coverage']
         },
 
@@ -42,6 +45,7 @@ module.exports = function (config) {
             'karma-jasmine',
             'karma-junit-reporter',
             'karma-coverage',
+            'karma-ng-html2js-preprocessor',
             'sinon'
         ],
 

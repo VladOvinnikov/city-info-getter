@@ -9,7 +9,10 @@
 
         beforeEach(function () {
 
+            module('cityGetApp.constant');
+            module('cityGetApp.routeRequest');
             module('cityGetApp.city.service');
+            module('cityGetApp.filters');
 
         });
 
@@ -32,7 +35,7 @@
 
             it('getInfo() should return city info', function () {
 
-                httpBackend.expectGET('http://maps.googleapis.com/maps/api/geocode/json?address=usa,+' + city + '&language=us&sensor=false').respond(200, city);
+                httpBackend.expectGET('https://maps.googleapis.com/maps/api/geocode/json?address=usa,' + city + '&language=us&sensor=false').respond(200, city);
 
                 service.getInfo(city)
                     .then(function (data) {
@@ -44,7 +47,7 @@
 
             it('getWeather() should return city weather', function () {
 
-                httpBackend.expectGET('http://localhost:3000/weather?zip=' + zip).respond(200, zip);
+                httpBackend.expectGET('http://localhost:3011/weather?zip=' + zip).respond(200, zip);
 
                 service.getWeather(zip)
                     .then(function (data) {
@@ -52,6 +55,16 @@
                     });
 
                 httpBackend.flush();
+
+                expect(result).toEqual(zip);
+            });
+
+            it('getCities() should return city list', function () {
+
+                service.getCities()
+                    .then(function (data) {
+                        result = data;
+                    });
 
                 expect(result).toEqual(zip);
             });

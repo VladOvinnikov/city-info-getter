@@ -19,6 +19,7 @@
     "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "^1.0.2",
     "karma-junit-reporter": "^0.4.1",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
     "sinon": "^1.17.5"
   },
   "scripts": {
